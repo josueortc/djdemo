@@ -1,0 +1,19 @@
+version: '3'
+services:
+  datajoint:
+    image: sinzlab/pytorch
+    environment:
+      - DJ_HOST=db
+      - DJ_USER=root
+      - DJ_PASS=simple
+    volumes:
+      - .:/notebooks
+    links:
+      - db
+    ports:
+      - "8888:8888"
+  db:
+    image: datajoint/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=simple
+
